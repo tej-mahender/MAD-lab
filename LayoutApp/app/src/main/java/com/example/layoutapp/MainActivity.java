@@ -22,4 +22,21 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this,LinearLayoutActivity.class);
         this.startActivity(i);
     }
+    public void show_table_activity(View v){
+        Intent i = new Intent(this,TableActivity.class);
+        this.startActivity(i);
+    }
+    public void show_relative_activity(View v){
+        Intent i = new Intent(this, RelativeActivity.class);
+        this.startActivity(i);
+    }
+    public void show_frame_activity(View v){
+        Intent i = new Intent(this, FrameActivity.class);
+        this.startActivity(i);
+    }
+    public void show_tab_activity(View v){
+        Intent i = new Intent(this, TabActivity.class);
+        this.startActivity(i);
+    }
+
 }

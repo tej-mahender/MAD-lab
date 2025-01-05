@@ -5,6 +5,9 @@
     android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="100dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:orientation="horizontal"
     tools:context=".LinearLayoutActivity">
 
@@ -26,7 +29,7 @@
     <ImageView
         android:id="@+id/img2"
         android:layout_width="wrap_content"
-        android:layout_height="149dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         app:srcCompat="@drawable/pic2" />
 </LinearLayout>
