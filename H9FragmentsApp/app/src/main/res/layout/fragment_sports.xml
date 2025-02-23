@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".SportsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/lv_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:entries="@array/sports_list" />
 
 </FrameLayout>
