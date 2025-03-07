@@ -1,10 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    android:layout_width="409dp"
+    android:layout_height="729dp"
+    android:orientation="vertical"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Student Details"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"/>
+
+    <TextView
+        android:id="@+id/nametxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Name"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:paddingTop="8dp"
+        />
+
+    <EditText
+        android:id="@+id/nameEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp"
+       />
+
+    <TextView
+        android:id="@+id/rolltxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Roll Number"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/rollEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Roll Number"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <TextView
+        android:id="@+id/avgtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Avg"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/avgEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter average"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <TextView
+        android:id="@+id/gratxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:paddingTop="8dp"/>
+
+    <EditText
+        android:id="@+id/graEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter grade"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:onClick="insertStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"/>
+    <Button
+        android:id="@+id/getbtn"
+        android:onClick="getStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160442074937",
+    "project_id": "h9firebaseapp",
+    "storage_bucket": "h9firebaseapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160442074937:android:97a4546f64a658a8978ae8",
+        "android_client_info": {
+          "package_name": "com.example.h9firebaseapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwg8gakdGBV04zjcMdnFlM7FHUZ56kllI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
