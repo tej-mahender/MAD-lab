@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         try{
             roll = Integer.parseInt(edttxt_roll.getText().toString());
             sgdb.deleteStudent(roll);
+            Toast.makeText(this,"Deletion Successful",Toast.LENGTH_LONG).show();
             Log.d("H9 Good","delete: Successful");
         }
         catch(Exception e){

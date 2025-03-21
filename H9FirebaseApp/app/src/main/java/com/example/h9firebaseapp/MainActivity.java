@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText edtxtroll, edtxtname, edtxtavg, edtxtgrade;
     FirebaseDatabase fdb;
+    DatabaseReference studentRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,53 +34,60 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        edtxtroll = (EditText)this.findViewById(R.id.rollEdt);
-        edtxtavg = (EditText) this.findViewById(R.id.avgEdt);
-        edtxtname = (EditText) this.findViewById(R.id.nameEdt);
-        edtxtgrade = (EditText) this.findViewById(R.id.graEdt);
+
+        edtxtroll = findViewById(R.id.rollEdt);
+        edtxtavg = findViewById(R.id.avgEdt);
+        edtxtname = findViewById(R.id.nameEdt);
+        edtxtgrade = findViewById(R.id.graEdt);
+
         fdb = FirebaseDatabase.getInstance();
+        studentRef = fdb.getReference("students");
     }
-    public void insertStudent(View v){
-        Student s = new Student(edtxtroll.getText().toString(),edtxtname.getText().toString(), edtxtgrade.getText().toString(),edtxtavg.getText().toString());
-        fdb.getReference("students").push().setValue(s)
-                .addOnSuccessListener(new OnSuccessListener<Void>(){
-                    @Override
-                    public void onSuccess(Void unused){
-                        Toast.makeText(MainActivity.this,"Insertion Success",Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this,"Insertion Failure" + e.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
+
+    public void insertStudent(View v) {
+        String roll = edtxtroll.getText().toString();
+        Student s = new Student(roll, edtxtname.getText().toString(), edtxtgrade.getText().toString(), edtxtavg.getText().toString());
+
+        studentRef.child(roll).setValue(s)
+                .addOnSuccessListener(unused -> Toast.makeText(MainActivity.this, "Insertion Successful", Toast.LENGTH_LONG).show())
+                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Insertion Failure: " + e.getMessage(), Toast.LENGTH_LONG).show());
     }
 
     public void getStudent(View v) {
-        fdb.getReference("students").get()
-                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                    @Override
-                    public void onSuccess(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()) {
-                            for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                Student s = data.getValue(Student.class);
-                                if (s != null) {
-                                    Toast.makeText(MainActivity.this, "Name: " + s.getName() + ", Roll: " + s.getRoll(),
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            }
+        String roll = edtxtroll.getText().toString();
+
+        studentRef.child(roll).get()
+                .addOnSuccessListener(dataSnapshot -> {
+                    if (dataSnapshot.exists()) {
+                        Student s = dataSnapshot.getValue(Student.class);
+                        if (s != null) {
+                            Toast.makeText(MainActivity.this, "Rollno: "+s.getRoll()+"\nName: " + s.getName(), Toast.LENGTH_LONG).show();
                         }
-                            else{
-                                Toast.makeText(MainActivity.this,"No data Found", Toast.LENGTH_LONG).show();
-                            }
+                    } else {
+                        Toast.makeText(MainActivity.this, "No student found with Roll No: " + roll, Toast.LENGTH_LONG).show();
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this,"Retrivel Failure" + e.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
+                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Retrieval Failure: " + e.getMessage(), Toast.LENGTH_LONG).show());
+    }
+
+    public void updateStudent(View v) {
+        String roll = edtxtroll.getText().toString();
+        String name = edtxtname.getText().toString();
+        String avg = edtxtavg.getText().toString();
+        String grade = edtxtgrade.getText().toString();
+
+        Student updatedStudent = new Student(roll, name, grade, avg);
+
+        studentRef.child(roll).setValue(updatedStudent)
+                .addOnSuccessListener(unused -> Toast.makeText(MainActivity.this, "Update Successful", Toast.LENGTH_LONG).show())
+                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Update Failure: " + e.getMessage(), Toast.LENGTH_LONG).show());
+    }
+
+    public void deleteStudent(View v) {
+        String roll = edtxtroll.getText().toString();
+
+        studentRef.child(roll).removeValue()
+                .addOnSuccessListener(unused -> Toast.makeText(MainActivity.this, "Deletion Successful", Toast.LENGTH_LONG).show())
+                .addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Deletion Failure: " + e.getMessage(), Toast.LENGTH_LONG).show());
     }
 }

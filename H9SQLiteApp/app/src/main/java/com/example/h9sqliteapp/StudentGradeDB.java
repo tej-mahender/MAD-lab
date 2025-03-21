@@ -57,7 +57,7 @@ public class StudentGradeDB extends SQLiteOpenHelper {
             String name = c.getString(1);
             float avg = c.getFloat(2);
             String grade = c.getString(3);
-            String print = "Roll=" + r + "\nName=" + name + "\nAverage=" +avg+"\nGrade="+grade;
+            String print = "Roll=" + r + "\nName=" + name;
             return print;
         }
         else{
